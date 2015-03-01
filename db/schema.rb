@@ -11,9 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141008053648) do
+ActiveRecord::Schema.define(version: 20150121171705) do
 
-  create_table "articles", force: true do |t|
+  create_table "api_keys", force: :cascade do |t|
+    t.string   "token"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "articles", force: :cascade do |t|
     t.string   "title"
     t.text     "body"
     t.datetime "created_at"
@@ -21,7 +27,7 @@ ActiveRecord::Schema.define(version: 20141008053648) do
     t.integer  "author_id"
   end
 
-  create_table "authors", force: true do |t|
+  create_table "authors", force: :cascade do |t|
     t.string   "name"
     t.string   "phone_number"
     t.string   "email"
@@ -32,7 +38,7 @@ ActiveRecord::Schema.define(version: 20141008053648) do
     t.string   "password_digest"
   end
 
-  create_table "comments", force: true do |t|
+  create_table "comments", force: :cascade do |t|
     t.integer  "article_id"
     t.string   "author_name"
     t.text     "body"
@@ -40,14 +46,14 @@ ActiveRecord::Schema.define(version: 20141008053648) do
     t.datetime "updated_at"
   end
 
-  create_table "taggings", force: true do |t|
+  create_table "taggings", force: :cascade do |t|
     t.integer  "article_id"
     t.integer  "tag_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "tags", force: true do |t|
+  create_table "tags", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
